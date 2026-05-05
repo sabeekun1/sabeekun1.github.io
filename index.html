@@ -101,53 +101,44 @@
 <p>传统的高等代数课程通常包含两大主线：</p>
 <ol>
 <li><strong>多项式理论</strong>：探讨多项式的整除、最大公因式、因式分解以及根的分布规律。这是代数最古典的部分。</li>
-<li><strong>线性代数</strong>：这是我们课程的绝对核心。我们将从求解线性方程组出发，顺理成章地引入矩阵、行列式；接着发生一次重要的抽象飞跃，进入<strong>线性空间（向量空间）</strong>与<strong>线性变换</strong>的研究；最后还会探讨欧几里得空间、二次型，以及近世代数（群、环、域）。</li>
+<li><strong>线性代数</strong>：这是我们课程的绝对核心。我们将从求解线性方程组出发，顺理成章地引入矩阵、行列式；接着发生一次重要的抽象飞跃，进入<strong>线性空间（向量空间）</strong>与<strong>线性变换</strong>的研究；最后还会探讨欧几里得空间、二次型，以及近世代数（群、环、域）的基础。</li>
 </ol>
 <hr>
 <h3 id="第一课：从线性方程组到矩阵"><a href="#第一课：从线性方程组到矩阵" class="headerlink" title="第一课：从线性方程组到矩阵"></a>第一课：从线性方程组到矩阵</h3><p>在中学阶段，你一定解过二元或三元的一次方程组，比如这样一个经典的二元一次方程组：</p>
-<script type="math/tex; mode=display">\begin{cases} 2x + y = 5 \\ x - y = 1 \end{cases}</script><p>你脑海中可能立刻浮现出两种解法：</p>
+<script type="math/tex; mode=display">\begin{cases} 2x + y = 5 \\ x - y = 1 \end{cases}</script><p>你脑海中可能立刻浮现出两种解题视角：</p>
 <ul>
 <li><strong>代数视角</strong>：通过“代入消元”或“加减消元”，消去变量 $y$，解出 $x$，再求出 $y$。</li>
 <li><strong>几何视角</strong>：将每一个方程看作二维平面上的一条直线，方程组的解正是这两条直线的<strong>交点</strong>。</li>
 </ul>
 <p>但在高等代数中，我们要面对的是包含 $n$ 个未知数、$m$ 个方程的庞大系统：</p>
-<script type="math/tex; mode=display">\begin{cases} a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n = b_1 \\ a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n = b_2 \\ \dots \\ a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n = b_m \end{cases}</script><p>面对这样复杂的系统，几何上的直观（比如多维空间中的超平面相交）变得难以想象，而写出一堆未知数符号（$x_1, x_2, \dots, x_n$）也显得极其繁琐。</p>
-<p><strong>数学的一大魅力在于“抓住本质，舍弃表象”。</strong><br>仔细观察上面的方程组，真正决定这个系统性质的，并不是那些毫无灵魂的占位符 $x<em>i$，而是方程的**系数（$a</em>{ij}$）<strong>和</strong>常数项（$b_i$）**。</p>
-<p>如果我们把这些数字提取出来，按照它们原本的相对位置排成一个矩形的数字阵列，我们就得到了高等代数中最核心的工具之一——<strong>矩阵（Matrix）</strong>：</p>
+<script type="math/tex; mode=display">\begin{cases} a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n = b_1 \\ a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n = b_2 \\ \dots \\ a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n = b_m \end{cases}</script><p>面对这样复杂的系统，几何上的直观（多维空间中的超平面相交）变得难以想象，而写出一堆未知数符号（$x_1, x_2, \dots, x_n$）也显得极其繁琐。</p>
+<p><strong>数学的一大魅力在于“抓住本质，舍弃表象”。</strong><br>仔细观察上面的方程组，真正决定这个系统性质的，并不是那些毫无灵魂的占位符 $x<em>i$，而是方程的<strong>系数</strong>（$a</em>{ij}$）和<strong>常数项</strong>（$b_i$）。</p>
+<p>如果我们把这些核心数字提取出来，按照它们原本的相对位置排成一个矩形的阵列，我们就得到了高等代数中最核心的工具之一——<strong>矩阵（Matrix）</strong>：</p>
 <script type="math/tex; mode=display">\begin{pmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} & \dots & a_{2n} \\ \dots & \dots & \dots & \dots \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{pmatrix}</script><p>将方程组转化为矩阵，标志着我们从处理“零散的数字”迈向了处理“整体的结构”。</p>
 <hr>
-<p>在我们正式利用矩阵来推导著名的“高斯消元法（Gaussian Elimination）”之前，我想先考考你的直觉。这也将是我们今后交流的常态：先思考，后推导。</p>
-<p><strong>请思考并回答以下两个问题：</strong></p>
+<h3 id="思考时间：初等变换的起源"><a href="#思考时间：初等变换的起源" class="headerlink" title="思考时间：初等变换的起源"></a>思考时间：初等变换的起源</h3><p>在我们正式利用矩阵推导著名的“高斯消元法”之前，我想先考考你的直觉。这也将是我们今后交流的常态：<strong>先思考，后推导</strong>。</p>
+<p>为了让你有具体的抓手，我们把目光死死盯住刚才那个最简单的二元方程组：</p>
+<p>(1) <script type="math/tex">2x + y = 5</script><br>(2) <script type="math/tex">x - y = 1</script></p>
+<p>现在，请暂时忘掉大学教材里枯燥的定义，回忆一下中学时的解题习惯。假设你现在要亲手解出 $x$ 和 $y$，你的<strong>第一步操作</strong>会是什么？</p>
 <ol>
-<li>在你过去使用“消元法”解方程组时，你其实只被允许对这些方程进行几种极少数的“合法操作”（比如：把第一式乘以2加到第二式上）。你能总结一下，我们在不改变方程组解的前提下，到底可以对方程进行哪几种<strong>最基本的操作</strong>吗？</li>
-<li>从几何或代数的直觉出发，你认为是什么因素决定了一个线性方程组是<strong>有唯一解</strong>、<strong>无解</strong>还是有<strong>无数多个解</strong>？</li>
+<li><strong>直接相加？</strong> （把方程 (1) 和 (2) 相加，瞬间消去 $y$）</li>
+<li><strong>倍乘操作？</strong> （把方程 (2) 乘以 2，准备消去 $x$）</li>
+<li><strong>调换顺序？</strong> （觉得把系数为 1 的方程写在前面更顺眼）</li>
 </ol>
-<p>我们会在此基础上，引出代数中非常重要的一个概念——“秩（Rank）”。</p>
-<p>为了让你有更具体的抓手，不至于觉得太抽象，我们把目光死死盯住刚才那个最简单的二元方程组：</p>
-<p>(1) </p>
-<script type="math/tex; mode=display">2x + y = 5</script><p>(2) </p>
-<script type="math/tex; mode=display">x - y = 1</script><p>现在，请暂时忘掉大学教材里那些枯燥的定义，回忆一下中学时的解题习惯。假设你现在要亲手解出 $x$ 和 $y$，你会怎么做？</p>
-<ol>
-<li><strong>你会选择把方程 (1) 和 (2) 直接相加吗？</strong>（为了消去 $y$）</li>
-<li><strong>还是会把方程 (2) 乘以某个数字？</strong>（比如乘以 2，为了消去 $x$）</li>
-<li><strong>甚至，你会调换这两个方程的书写顺序吗？</strong>（比如觉得把系数为 1 的方程写在前面更顺眼）</li>
-</ol>
-<hr>
-<h4 id="为什么要问这个问题？"><a href="#为什么要问这个问题？" class="headerlink" title="为什么要问这个问题？"></a>为什么要问这个问题？</h4><p>不要觉得这个问题太简单而不屑于回答。实际上，你接下来做出的每一个“理所当然”的动作，在高等代数中都有其神圣的地位。</p>
-<p>我们要做的，就是将这些直觉上的动作“翻译”成纯粹的矩阵语言。这正是整个高等代数中极其强大且贯穿始终的工具——<strong>初等变换</strong>（Elementary Operations）的起源。</p>
-<h4 id="对应的矩阵视角："><a href="#对应的矩阵视角：" class="headerlink" title="对应的矩阵视角："></a>对应的矩阵视角：</h4><p>如果我们把方程组写成增广矩阵的形式：</p>
-<script type="math/tex; mode=display">\left( \begin{array}{cc|c} 2 & 1 & 5 \\ 1 & -1 & 1 \end{array} \right)</script><p>你刚才想到的操作，其实分别对应了：</p>
+<h4 id="为什么要问这个问题？"><a href="#为什么要问这个问题？" class="headerlink" title="为什么要问这个问题？"></a>为什么要问这个问题？</h4><p>不要觉得这个问题太简单而不屑于回答。实际上，你刚才做出的每一个“理所当然”的动作，在高等代数中都有其神圣的地位。</p>
+<p>如果我们把方程组写成<strong>增广矩阵</strong>的形式：</p>
+<script type="math/tex; mode=display">\left( \begin{array}{cc|c} 2 & 1 & 5 \\ 1 & -1 & 1 \end{array} \right)</script><p>你刚才想到的直觉操作，完美对应了矩阵语言中最强大的工具——<strong>初等行变换（Elementary Row Operations）</strong>：</p>
 <ul>
 <li><strong>倍加变换</strong>：将某一行乘以一个数加到另一行。</li>
 <li><strong>倍乘变换</strong>：将某一行乘以一个非零常数。</li>
 <li><strong>对换变换</strong>：交换两行的位置。</li>
 </ul>
-<p>这些操作虽然简单，但它们保证了方程组的<strong>同解性</strong>，也是计算机求解千万级线性方程组的核心逻辑。</p>
+<p>这些操作虽然极其简单，但它们保证了方程组的<strong>同解性</strong>。无论我们怎么对矩阵进行这三种变换，代表方程的两条直线在几何上的交点永远不会发生改变。这也是计算机底层求解千万级线性方程组的绝对核心逻辑。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/05/05/MathTest/" data-id="cuidT8bkYDi7X2662GQm9GZPg" data-title="第一课：从线性方程组到矩阵" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/05/05/MathTest/" data-id="cuidINnqTl5yHkloNk3KlLTsn" data-title="第一课：从线性方程组到矩阵" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
